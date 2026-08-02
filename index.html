@@ -224,12 +224,14 @@ const COMMANDS = {
   impact() {
     line(`<span class="out-white">proof over promises:</span>`);
     [
-      ["$5M+", "projected annual savings — BNetAuto branch automation platform"],
-      ["4h → <5min", "per-branch network setup time (validated in test)"],
-      ["1 → 50-60", "branches migrated per rollout night (parallel auto-merge batch engine)"],
-      ["45 → <20min", "full CI/CD build-and-test cycle (parallelized JUnit/Jest/Karate, Docker layer caching)"],
-      ["95%", "new-code coverage gate across 3,400+ automated tests (JUnit 5, Jest, Karate)"],
+      ["$5M+", "annual savings — JPMC branch network automation platform (BNetAuto)"],
+      ["4h → <5min", "per-branch network setup time (BNetAuto)"],
+      ["1 → 50-60", "branches migrated per rollout night (BNetAuto)"],
+      ["45 → <20min", "full CI/CD build-and-test cycle (BNetAuto)"],
+      ["500+", "retail branch deployments served by Falkor, my Python provisioning tool"],
+      ["5 vendors", "unified into one exactly-once security log ingestion platform (SoclogIngestor)"],
       ["2d → <30min", "underwriting submission triage (Great American Insurance)"],
+      ["10K+", "monthly patient enrollments automated (Accenture, healthcare)"],
     ].forEach(([n, d]) => line(`  <span class="out-green">${escapeHtml(n.padEnd(12))}</span><span class="out-dim">${escapeHtml(d)}</span>`));
   },
   ai() {
@@ -382,7 +384,7 @@ function startMatrix() {
 
 /* ---------------------------------------------------------------------- */
 const IMPACT_CARDS = [
-  ["$5M+", "Projected Annual Savings"],
+  ["$5M+", "ANNUAL SAVINGS"],
   ["<5 MIN", "Branch Setup (was 4+ hrs)"],
   ["50-60", "Branches per Rollout Night (was 1)"],
   ["<20 MIN", "CI/CD Cycle (was 45 min)"],
