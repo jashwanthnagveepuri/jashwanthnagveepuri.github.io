@@ -63,18 +63,6 @@
   .stat .num{font-size:22px;color:var(--green);font-weight:600;}
   .stat .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:2px;}
 
-  /* heatmap */
-  .heatmap-wrap{overflow-x:auto;padding:4px 0;}
-  .heatmap{display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,10px);gap:2px;}
-  .cell{width:10px;height:10px;border-radius:2px;cursor:pointer;transition:transform .08s;}
-  .cell:hover{transform:scale(1.6);outline:1px solid var(--white);}
-  .legend{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--muted);margin-top:8px;}
-  .legend .cell{cursor:default;}
-  .legend .cell:hover{transform:none;outline:none;}
-  #tooltip{position:fixed;pointer-events:none;background:#1c2128;border:1px solid var(--frame);
-    color:var(--white);font-size:11.5px;padding:4px 8px;border-radius:6px;display:none;z-index:50;
-    box-shadow:0 8px 20px rgba(0,0,0,.5);}
-
   footer{margin-top:26px;text-align:center;color:var(--muted);font-size:12px;}
   footer .links{margin-bottom:8px;}
   footer .links a{margin:0 8px;}
@@ -110,32 +98,21 @@
     </div>
   </div>
 
-  <div class="hint">type <kbd>help</kbd> to see commands · try <kbd>contributions</kbd>, <kbd>projects</kbd>, or <kbd>matrix</kbd></div>
+  <div class="hint">type <kbd>help</kbd> to see commands · try <kbd>impact</kbd>, <kbd>ai</kbd>, or <kbd>matrix</kbd></div>
 
   <footer>
     <div class="links">
       <a href="https://github.com/jashwanthnagveepuri" target="_blank" rel="noopener">github</a>·
-      <a href="https://linkedin.com/in/jashwanthnagveepuri" target="_blank" rel="noopener">linkedin</a>
+      <a href="https://linkedin.com/in/jashwanthnag3037" target="_blank" rel="noopener">linkedin</a>
     </div>
-    <div>rendered client-side, no build step · contribution data fetched live from github</div>
+    <div>rendered client-side, no build step</div>
   </footer>
 
 </div>
 
-<div id="tooltip"></div>
 <canvas id="matrixCanvas" style="position:fixed;inset:0;z-index:-1;display:none;"></canvas>
 
 <script>
-/* =========================================================================
-   Fallback contribution data (baked in at build time, scraped from
-   https://github.com/users/jashwanthnagveepuri/contributions). If the live
-   fetch fails -- CORS, offline, whatever -- the page still works and shows
-   real numbers as of the last sync.
-   ========================================================================= */
-window.__FALLBACK_DATA = {"username":"jashwanthnagveepuri","generated_at":"2026-08-02T20:17:08Z","range":{"start":"2025-08-03","end":"2026-08-02"},"total_contributions":56,"active_days":14,"avg_per_active_day":4.0,"current_streak":{"length":1,"start":"2026-07-21","end":"2026-07-21"},"longest_streak":{"length":3,"start":"2026-07-07","end":"2026-07-09"},"best_day":{"date":"2026-05-09","count":32},"monthly":[{"month":"2025-08","total":2},{"month":"2025-09","total":0},{"month":"2025-10","total":2},{"month":"2025-11","total":0},{"month":"2025-12","total":0},{"month":"2026-01","total":0},{"month":"2026-02","total":0},{"month":"2026-03","total":2},{"month":"2026-04","total":12},{"month":"2026-05","total":33},{"month":"2026-06","total":0},{"month":"2026-07","total":5},{"month":"2026-08","total":0}],"days":[{"date":"2025-08-03","count":0},{"date":"2025-08-04","count":0},{"date":"2025-08-05","count":0},{"date":"2025-08-06","count":0},{"date":"2025-08-07","count":0},{"date":"2025-08-08","count":0},{"date":"2025-08-09","count":0},{"date":"2025-08-10","count":2},{"date":"2025-08-11","count":0},{"date":"2025-08-12","count":0},{"date":"2025-08-13","count":0},{"date":"2025-08-14","count":0},{"date":"2025-08-15","count":0},{"date":"2025-08-16","count":0},{"date":"2025-08-17","count":0},{"date":"2025-08-18","count":0},{"date":"2025-08-19","count":0},{"date":"2025-08-20","count":0},{"date":"2025-08-21","count":0},{"date":"2025-08-22","count":0},{"date":"2025-08-23","count":0},{"date":"2025-08-24","count":0},{"date":"2025-08-25","count":0},{"date":"2025-08-26","count":0},{"date":"2025-08-27","count":0},{"date":"2025-08-28","count":0},{"date":"2025-08-29","count":0},{"date":"2025-08-30","count":0},{"date":"2025-08-31","count":0},{"date":"2025-09-01","count":0},{"date":"2025-09-02","count":0},{"date":"2025-09-03","count":0},{"date":"2025-09-04","count":0},{"date":"2025-09-05","count":0},{"date":"2025-09-06","count":0},{"date":"2025-09-07","count":0},{"date":"2025-09-08","count":0},{"date":"2025-09-09","count":0},{"date":"2025-09-10","count":0},{"date":"2025-09-11","count":0},{"date":"2025-09-12","count":0},{"date":"2025-09-13","count":0},{"date":"2025-09-14","count":0},{"date":"2025-09-15","count":0},{"date":"2025-09-16","count":0},{"date":"2025-09-17","count":0},{"date":"2025-09-18","count":0},{"date":"2025-09-19","count":0},{"date":"2025-09-20","count":0},{"date":"2025-09-21","count":0},{"date":"2025-09-22","count":0},{"date":"2025-09-23","count":0},{"date":"2025-09-24","count":0},{"date":"2025-09-25","count":0},{"date":"2025-09-26","count":0},{"date":"2025-09-27","count":0},{"date":"2025-09-28","count":0},{"date":"2025-09-29","count":0},{"date":"2025-09-30","count":0},{"date":"2025-10-01","count":0},{"date":"2025-10-02","count":0},{"date":"2025-10-03","count":0},{"date":"2025-10-04","count":0},{"date":"2025-10-05","count":0},{"date":"2025-10-06","count":0},{"date":"2025-10-07","count":0},{"date":"2025-10-08","count":0},{"date":"2025-10-09","count":0},{"date":"2025-10-10","count":0},{"date":"2025-10-11","count":0},{"date":"2025-10-12","count":0},{"date":"2025-10-13","count":0},{"date":"2025-10-14","count":0},{"date":"2025-10-15","count":0},{"date":"2025-10-16","count":0},{"date":"2025-10-17","count":0},{"date":"2025-10-18","count":0},{"date":"2025-10-19","count":2},{"date":"2025-10-20","count":0},{"date":"2025-10-21","count":0},{"date":"2025-10-22","count":0},{"date":"2025-10-23","count":0},{"date":"2025-10-24","count":0},{"date":"2025-10-25","count":0},{"date":"2025-10-26","count":0},{"date":"2025-10-27","count":0},{"date":"2025-10-28","count":0},{"date":"2025-10-29","count":0},{"date":"2025-10-30","count":0},{"date":"2025-10-31","count":0},{"date":"2025-11-01","count":0},{"date":"2025-11-02","count":0},{"date":"2025-11-03","count":0},{"date":"2025-11-04","count":0},{"date":"2025-11-05","count":0},{"date":"2025-11-06","count":0},{"date":"2025-11-07","count":0},{"date":"2025-11-08","count":0},{"date":"2025-11-09","count":0},{"date":"2025-11-10","count":0},{"date":"2025-11-11","count":0},{"date":"2025-11-12","count":0},{"date":"2025-11-13","count":0},{"date":"2025-11-14","count":0},{"date":"2025-11-15","count":0},{"date":"2025-11-16","count":0},{"date":"2025-11-17","count":0},{"date":"2025-11-18","count":0},{"date":"2025-11-19","count":0},{"date":"2025-11-20","count":0},{"date":"2025-11-21","count":0},{"date":"2025-11-22","count":0},{"date":"2025-11-23","count":0},{"date":"2025-11-24","count":0},{"date":"2025-11-25","count":0},{"date":"2025-11-26","count":0},{"date":"2025-11-27","count":0},{"date":"2025-11-28","count":0},{"date":"2025-11-29","count":0},{"date":"2025-11-30","count":0},{"date":"2025-12-01","count":0},{"date":"2025-12-02","count":0},{"date":"2025-12-03","count":0},{"date":"2025-12-04","count":0},{"date":"2025-12-05","count":0},{"date":"2025-12-06","count":0},{"date":"2025-12-07","count":0},{"date":"2025-12-08","count":0},{"date":"2025-12-09","count":0},{"date":"2025-12-10","count":0},{"date":"2025-12-11","count":0},{"date":"2025-12-12","count":0},{"date":"2025-12-13","count":0},{"date":"2025-12-14","count":0},{"date":"2025-12-15","count":0},{"date":"2025-12-16","count":0},{"date":"2025-12-17","count":0},{"date":"2025-12-18","count":0},{"date":"2025-12-19","count":0},{"date":"2025-12-20","count":0},{"date":"2025-12-21","count":0},{"date":"2025-12-22","count":0},{"date":"2025-12-23","count":0},{"date":"2025-12-24","count":0},{"date":"2025-12-25","count":0},{"date":"2025-12-26","count":0},{"date":"2025-12-27","count":0},{"date":"2025-12-28","count":0},{"date":"2025-12-29","count":0},{"date":"2025-12-30","count":0},{"date":"2025-12-31","count":0},{"date":"2026-01-01","count":0},{"date":"2026-01-02","count":0},{"date":"2026-01-03","count":0},{"date":"2026-01-04","count":0},{"date":"2026-01-05","count":0},{"date":"2026-01-06","count":0},{"date":"2026-01-07","count":0},{"date":"2026-01-08","count":0},{"date":"2026-01-09","count":0},{"date":"2026-01-10","count":0},{"date":"2026-01-11","count":0},{"date":"2026-01-12","count":0},{"date":"2026-01-13","count":0},{"date":"2026-01-14","count":0},{"date":"2026-01-15","count":0},{"date":"2026-01-16","count":0},{"date":"2026-01-17","count":0},{"date":"2026-01-18","count":0},{"date":"2026-01-19","count":0},{"date":"2026-01-20","count":0},{"date":"2026-01-21","count":0},{"date":"2026-01-22","count":0},{"date":"2026-01-23","count":0},{"date":"2026-01-24","count":0},{"date":"2026-01-25","count":0},{"date":"2026-01-26","count":0},{"date":"2026-01-27","count":0},{"date":"2026-01-28","count":0},{"date":"2026-01-29","count":0},{"date":"2026-01-30","count":0},{"date":"2026-01-31","count":0},{"date":"2026-02-01","count":0},{"date":"2026-02-02","count":0},{"date":"2026-02-03","count":0},{"date":"2026-02-04","count":0},{"date":"2026-02-05","count":0},{"date":"2026-02-06","count":0},{"date":"2026-02-07","count":0},{"date":"2026-02-08","count":0},{"date":"2026-02-09","count":0},{"date":"2026-02-10","count":0},{"date":"2026-02-11","count":0},{"date":"2026-02-12","count":0},{"date":"2026-02-13","count":0},{"date":"2026-02-14","count":0},{"date":"2026-02-15","count":0},{"date":"2026-02-16","count":0},{"date":"2026-02-17","count":0},{"date":"2026-02-18","count":0},{"date":"2026-02-19","count":0},{"date":"2026-02-20","count":0},{"date":"2026-02-21","count":0},{"date":"2026-02-22","count":0},{"date":"2026-02-23","count":0},{"date":"2026-02-24","count":0},{"date":"2026-02-25","count":0},{"date":"2026-02-26","count":0},{"date":"2026-02-27","count":0},{"date":"2026-02-28","count":0},{"date":"2026-03-01","count":1},{"date":"2026-03-02","count":0},{"date":"2026-03-03","count":0},{"date":"2026-03-04","count":0},{"date":"2026-03-05","count":0},{"date":"2026-03-06","count":0},{"date":"2026-03-07","count":1},{"date":"2026-03-08","count":0},{"date":"2026-03-09","count":0},{"date":"2026-03-10","count":0},{"date":"2026-03-11","count":0},{"date":"2026-03-12","count":0},{"date":"2026-03-13","count":0},{"date":"2026-03-14","count":0},{"date":"2026-03-15","count":0},{"date":"2026-03-16","count":0},{"date":"2026-03-17","count":0},{"date":"2026-03-18","count":0},{"date":"2026-03-19","count":0},{"date":"2026-03-20","count":0},{"date":"2026-03-21","count":0},{"date":"2026-03-22","count":0},{"date":"2026-03-23","count":0},{"date":"2026-03-24","count":0},{"date":"2026-03-25","count":0},{"date":"2026-03-26","count":0},{"date":"2026-03-27","count":0},{"date":"2026-03-28","count":0},{"date":"2026-03-29","count":0},{"date":"2026-03-30","count":0},{"date":"2026-03-31","count":0},{"date":"2026-04-01","count":0},{"date":"2026-04-02","count":0},{"date":"2026-04-03","count":0},{"date":"2026-04-04","count":2},{"date":"2026-04-05","count":0},{"date":"2026-04-06","count":0},{"date":"2026-04-07","count":1},{"date":"2026-04-08","count":0},{"date":"2026-04-09","count":0},{"date":"2026-04-10","count":0},{"date":"2026-04-11","count":0},{"date":"2026-04-12","count":0},{"date":"2026-04-13","count":0},{"date":"2026-04-14","count":0},{"date":"2026-04-15","count":0},{"date":"2026-04-16","count":0},{"date":"2026-04-17","count":0},{"date":"2026-04-18","count":8},{"date":"2026-04-19","count":1},{"date":"2026-04-20","count":0},{"date":"2026-04-21","count":0},{"date":"2026-04-22","count":0},{"date":"2026-04-23","count":0},{"date":"2026-04-24","count":0},{"date":"2026-04-25","count":0},{"date":"2026-04-26","count":0},{"date":"2026-04-27","count":0},{"date":"2026-04-28","count":0},{"date":"2026-04-29","count":0},{"date":"2026-04-30","count":0},{"date":"2026-05-01","count":1},{"date":"2026-05-02","count":0},{"date":"2026-05-03","count":0},{"date":"2026-05-04","count":0},{"date":"2026-05-05","count":0},{"date":"2026-05-06","count":0},{"date":"2026-05-07","count":0},{"date":"2026-05-08","count":0},{"date":"2026-05-09","count":32},{"date":"2026-05-10","count":0},{"date":"2026-05-11","count":0},{"date":"2026-05-12","count":0},{"date":"2026-05-13","count":0},{"date":"2026-05-14","count":0},{"date":"2026-05-15","count":0},{"date":"2026-05-16","count":0},{"date":"2026-05-17","count":0},{"date":"2026-05-18","count":0},{"date":"2026-05-19","count":0},{"date":"2026-05-20","count":0},{"date":"2026-05-21","count":0},{"date":"2026-05-22","count":0},{"date":"2026-05-23","count":0},{"date":"2026-05-24","count":0},{"date":"2026-05-25","count":0},{"date":"2026-05-26","count":0},{"date":"2026-05-27","count":0},{"date":"2026-05-28","count":0},{"date":"2026-05-29","count":0},{"date":"2026-05-30","count":0},{"date":"2026-05-31","count":0},{"date":"2026-06-01","count":0},{"date":"2026-06-02","count":0},{"date":"2026-06-03","count":0},{"date":"2026-06-04","count":0},{"date":"2026-06-05","count":0},{"date":"2026-06-06","count":0},{"date":"2026-06-07","count":0},{"date":"2026-06-08","count":0},{"date":"2026-06-09","count":0},{"date":"2026-06-10","count":0},{"date":"2026-06-11","count":0},{"date":"2026-06-12","count":0},{"date":"2026-06-13","count":0},{"date":"2026-06-14","count":0},{"date":"2026-06-15","count":0},{"date":"2026-06-16","count":0},{"date":"2026-06-17","count":0},{"date":"2026-06-18","count":0},{"date":"2026-06-19","count":0},{"date":"2026-06-20","count":0},{"date":"2026-06-21","count":0},{"date":"2026-06-22","count":0},{"date":"2026-06-23","count":0},{"date":"2026-06-24","count":0},{"date":"2026-06-25","count":0},{"date":"2026-06-26","count":0},{"date":"2026-06-27","count":0},{"date":"2026-06-28","count":0},{"date":"2026-06-29","count":0},{"date":"2026-06-30","count":0},{"date":"2026-07-01","count":0},{"date":"2026-07-02","count":0},{"date":"2026-07-03","count":0},{"date":"2026-07-04","count":0},{"date":"2026-07-05","count":0},{"date":"2026-07-06","count":0},{"date":"2026-07-07","count":2},{"date":"2026-07-08","count":1},{"date":"2026-07-09","count":1},{"date":"2026-07-10","count":0},{"date":"2026-07-11","count":0},{"date":"2026-07-12","count":0},{"date":"2026-07-13","count":0},{"date":"2026-07-14","count":0},{"date":"2026-07-15","count":0},{"date":"2026-07-16","count":0},{"date":"2026-07-17","count":0},{"date":"2026-07-18","count":0},{"date":"2026-07-19","count":0},{"date":"2026-07-20","count":0},{"date":"2026-07-21","count":1},{"date":"2026-07-22","count":0},{"date":"2026-07-23","count":0},{"date":"2026-07-24","count":0},{"date":"2026-07-25","count":0},{"date":"2026-07-26","count":0},{"date":"2026-07-27","count":0},{"date":"2026-07-28","count":0},{"date":"2026-07-29","count":0},{"date":"2026-07-30","count":0},{"date":"2026-07-31","count":0},{"date":"2026-08-01","count":0},{"date":"2026-08-02","count":0}]};
-
-const LIVE_DATA_URL = "https://github.com/users/jashwanthnagveepuri/contributions";
-
 const BANNER = `    _   __    ___     ______
    / | / /   /   |   / ____/
   /  |/ /   / /| |  / / __
@@ -146,7 +123,6 @@ document.getElementById("bannerArt").textContent = BANNER;
 /* ---------------------------------------------------------------------- */
 const term = document.getElementById("term");
 const input = document.getElementById("cmdInput");
-const tooltip = document.getElementById("tooltip");
 
 function line(html, cls) {
   const div = document.createElement("div");
@@ -158,179 +134,8 @@ function line(html, cls) {
 }
 function blank() { line("&nbsp;"); }
 
-let DATA = null;
-window.__getData = () => DATA; // test/debug hook
-
-async function loadData() {
-  try {
-    const res = await fetch(LIVE_DATA_URL, { cache: "no-store" });
-    if (!res.ok) throw new Error("bad status " + res.status);
-    const html = await res.text();
-    const parsed = parseContributionsHtml(html);
-    if (!parsed) throw new Error("no contribution cells parsed");
-    DATA = parsed;
-  } catch (e) {
-    DATA = window.__FALLBACK_DATA;
-  }
-  renderStats();
-}
-
-/* Parse GitHub's contributions-page HTML (an SVG-less table of
-   td.ContributionCalendar-day cells plus tool-tip elements) into the same
-   shape as the fallback JSON. */
-function parseContributionsHtml(html) {
-  const doc = new DOMParser().parseFromString(html, "text/html");
-  const cells = doc.querySelectorAll("td.ContributionCalendar-day[data-date]");
-  if (!cells.length) return null;
-  const days = [];
-  cells.forEach((td) => {
-    let count = 0;
-    const tip = td.id ? doc.querySelector('tool-tip[for="' + td.id + '"]') : null;
-    if (tip) {
-      const m = tip.textContent.trim().match(/^(\d+)\s+contribution/);
-      if (m) count = parseInt(m[1], 10);
-    }
-    days.push({ date: td.getAttribute("data-date"), count: count });
-  });
-  days.sort((a, b) => (a.date < b.date ? -1 : 1));
-  return summarizeDays(days);
-}
-
-function summarizeDays(days) {
-  const total = days.reduce((s, d) => s + d.count, 0);
-  const active = days.filter((d) => d.count > 0).length;
-  let longest = { length: 0, start: null, end: null };
-  let cur = 0, curStart = null, prev = null;
-  days.forEach((d) => {
-    if (d.count > 0) { if (cur === 0) curStart = d.date; cur++; }
-    else { if (cur > longest.length) longest = { length: cur, start: curStart, end: prev }; cur = 0; }
-    prev = d.date;
-  });
-  if (cur > longest.length) longest = { length: cur, start: curStart, end: prev };
-  let cLen = 0, cStart = null, cEnd = null;
-  for (let i = days.length - 1; i >= 0; i--) {
-    const d = days[i];
-    if (d.count > 0) { cLen++; if (!cEnd) cEnd = d.date; cStart = d.date; }
-    else if (cEnd) break;
-  }
-  const best = days.reduce((b, d) => (d.count > b.count ? d : b), { date: days[0].date, count: 0 });
-  const monthlyMap = {};
-  days.forEach((d) => { const k = d.date.slice(0, 7); monthlyMap[k] = (monthlyMap[k] || 0) + d.count; });
-  const monthly = Object.keys(monthlyMap).sort().map((k) => ({ month: k, total: monthlyMap[k] }));
-  return {
-    username: "jashwanthnagveepuri",
-    generated_at: new Date().toISOString(),
-    range: { start: days[0].date, end: days[days.length - 1].date },
-    total_contributions: total,
-    active_days: active,
-    avg_per_active_day: active ? Math.round((total / active) * 10) / 10 : 0,
-    current_streak: { length: cLen, start: cStart, end: cEnd },
-    longest_streak: longest,
-    best_day: { date: best.date, count: best.count },
-    monthly: monthly,
-    days: days,
-  };
-}
-
-/* ---------------------------------------------------------------------- */
-function countUp(el, target, suffix) {
-  const dur = 900;
-  const start = performance.now();
-  function tick(now) {
-    const p = Math.min(1, (now - start) / dur);
-    const val = Math.round(target * (1 - Math.pow(1 - p, 3)));
-    el.textContent = val.toLocaleString() + (suffix || "");
-    if (p < 1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
-
-function renderStats() {
-  if (!DATA) return;
-  const box = document.getElementById("statsBox");
-  if (!box) return;
-  const stats = [
-    ["total", DATA.total_contributions, "contributions"],
-    ["current", DATA.current_streak.length, "day streak"],
-    ["longest", DATA.longest_streak.length, "day best streak"],
-    ["best", DATA.best_day.count, "in one day"],
-  ];
-  box.innerHTML = "";
-  stats.forEach(([key, val, label]) => {
-    const card = document.createElement("div");
-    card.className = "stat";
-    card.innerHTML = `<div class="num" data-key="${key}">0</div><div class="lbl">${label}</div>`;
-    box.appendChild(card);
-    countUp(card.querySelector(".num"), val);
-  });
-}
-
-/* ---------------------------------------------------------------------- */
-function levelFor(count) {
-  if (count === 0) return 0;
-  if (count <= 5) return 1;
-  if (count <= 15) return 2;
-  if (count <= 30) return 3;
-  if (count <= 50) return 4;
-  return 5;
-}
-const PALETTE = ["#1c2128", "#0e4429", "#146c37", "#26a648", "#39d353", "#7cf2a0"];
-
-function buildHeatmapEl() {
-  const wrap = document.createElement("div");
-  wrap.className = "heatmap-wrap";
-  const grid = document.createElement("div");
-  grid.className = "heatmap";
-
-  const days = DATA.days;
-  const first = new Date(days[0].date + "T00:00:00");
-  const leadPad = (first.getDay()); // sunday=0 already
-  let col = new Array(leadPad).fill(null);
-
-  const cols = [];
-  days.forEach((d) => {
-    const date = new Date(d.date + "T00:00:00");
-    const weekday = date.getDay();
-    while (col.length < weekday) col.push(null);
-    col.push(d);
-    if (col.length === 7) { cols.push(col); col = []; }
-  });
-  if (col.length) { while (col.length < 7) col.push(null); cols.push(col); }
-
-  cols.forEach((column) => {
-    column.forEach((d) => {
-      const cell = document.createElement("div");
-      cell.className = "cell";
-      if (!d) {
-        cell.style.background = "transparent";
-        cell.style.cursor = "default";
-      } else {
-        const lvl = levelFor(d.count);
-        cell.style.background = PALETTE[lvl];
-        cell.addEventListener("mousemove", (e) => {
-          tooltip.style.display = "block";
-          tooltip.style.left = e.clientX + 14 + "px";
-          tooltip.style.top = e.clientY + 14 + "px";
-          tooltip.textContent = `${d.date}: ${d.count} contribution${d.count === 1 ? "" : "s"}`;
-        });
-        cell.addEventListener("mouseleave", () => { tooltip.style.display = "none"; });
-      }
-      grid.appendChild(cell);
-    });
-  });
-
-  wrap.appendChild(grid);
-
-  const legend = document.createElement("div");
-  legend.className = "legend";
-  legend.innerHTML = "less ";
-  PALETTE.forEach((c) => {
-    legend.innerHTML += `<span class="cell" style="background:${c}"></span> `;
-  });
-  legend.innerHTML += " more";
-  wrap.appendChild(legend);
-
-  return wrap;
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
 /* ---------------------------------------------------------------------- */
@@ -341,9 +146,11 @@ const COMMANDS = {
       ["whoami", "who is this guy anyway"],
       ["experience", "work history"],
       ["skills", "tech stack"],
+      ["impact", "proof over promises"],
+      ["ai", "GenAI / agentic engineering practice"],
       ["projects", "things I've built"],
-      ["contributions", "live GitHub contribution heatmap"],
-      ["streak", "current / longest streak"],
+      ["certs", "certifications"],
+      ["education", "degrees"],
       ["contact", "how to reach me"],
       ["photo", "profile photo"],
       ["matrix", "toggle a little fun"],
@@ -351,24 +158,102 @@ const COMMANDS = {
     ].forEach(([c, d]) => line(`  <span class="out-cmd">${c.padEnd(15)}</span><span class="out-dim">${d}</span>`));
   },
   whoami() {
-    line(`<span class="out-white">Jashwanth Nag Veepuri ("Nag") — Software Engineer, 5 years of experience</span>`);
-    line(`<span class="out-dim">Focus: backend &amp; platform engineering, internal tooling, GenAI-powered developer workflows</span>`);
-    line(`<span class="out-dim">Currently: Software Engineer @ JPMorgan Chase &amp; Co. — CI/CD build-time optimization, internal tooling</span>`);
-    line(`<span class="out-dim">I build platforms and AI tooling that make engineers faster.</span>`);
+    line(`<span class="out-white">${escapeHtml('Jashwanth Nag Veepuri ("Nag") — Software Engineer, 5 years of experience')}</span>`);
+    [
+      "MS Information Technology, University of Cincinnati (GPA 4.0)",
+      "Backend & platform engineer: Java 21 / Spring Boot 3, event-driven systems, AWS",
+      "Currently @ JPMorgan Chase — automation platform modernizing 5,000+ retail bank branches",
+      "Side quest: I lead my team's AI-assisted engineering practice (agentic frameworks + MCP servers)",
+    ].forEach((t) => line(`<span class="out-dim">${escapeHtml(t)}</span>`));
   },
   experience() {
-    [
-      ["recent", "Software Engineer", "JPMorgan Chase &amp; Co. — CI/CD build-time optimization, internal tooling"],
-      ["earlier", "Software Engineer", "Enterprise insurance — claims-processing systems"],
-    ].forEach(([d, r, c]) => line(`<span class="out-green">${d.padEnd(9)}</span><span class="out-white">${r.padEnd(20)}</span><span class="out-dim">${c}</span>`));
-    blank();
-    line(`<span class="out-dim">5+ years across backend services, platform engineering and developer tooling.</span>`);
+    const roles = [
+      {
+        role: "Software Engineer — JPMorgan Chase",
+        meta: "Columbus, OH (Mar 2025 – Present)",
+        bullets: [
+          "Branch 3.0 network modernization. Shipped 3 apps: BNetAuto (flagship Java 21 / Spring Boot 3",
+          "branch automation), Falkor (Python provisioning tool, 500+ branch deployments), SoclogIngestor",
+          "(multi-vendor security log ingestion). Branch setup 4+ hrs → <5 min; rollouts 1 → 50-60 branches/night.",
+          "Lead the team's AI-assisted engineering practice (BMAD framework, 4 MCP servers).",
+        ],
+      },
+      {
+        role: "Software Developer II — Great American Insurance Group",
+        meta: "Cincinnati, OH (Mar 2024 – Feb 2025)",
+        bullets: [
+          "Underwriting submission intake & triage automation. Owned the event-driven Java 17 / Spring Boot 3",
+          "side: Kafka backbone, OCR document-intelligence integration, validation/reconciliation, rules-engine",
+          "routing. Triage of clean packages: ~2 days → <30 min.",
+        ],
+      },
+      {
+        role: "Software Developer — University of Cincinnati IT Solutions Center",
+        meta: "Cincinnati, OH (Sep 2023 – Feb 2024)",
+        bullets: [
+          "Contract-validation microservices (Java, Spring Boot, MongoDB) automating approval logic — ~40%",
+          "faster processing across 1M+ records. Tesseract OCR pipeline for scanned contracts. React/TypeScript UI.",
+        ],
+      },
+      {
+        role: "Software Engineer — Accenture",
+        meta: "Bangalore, India (Aug 2021 – Jul 2023)",
+        bullets: [
+          "EnterpriseRx cloud pharmacy platform (US healthcare client). Kafka event-driven microservices,",
+          "HIPAA-secured APIs (OAuth2/JWT/RBAC), Oracle SQL + Redis tuning, AWS EKS scaling, Jenkins/GitHub",
+          "Actions CI/CD. Async onboarding APIs automating 10K+ monthly enrollments.",
+        ],
+      },
+    ];
+    roles.forEach((r, i) => {
+      line(`<span class="out-cmd">${escapeHtml(r.role)}</span> <span class="out-dim">· ${escapeHtml(r.meta)}</span>`);
+      r.bullets.forEach((b) => line(`  <span class="out-white">${escapeHtml(b)}</span>`));
+      if (i < roles.length - 1) blank();
+    });
   },
   skills() {
-    line(`<span class="out-cmd">languages</span>  Java, Python, TypeScript, SQL`);
-    line(`<span class="out-cmd">backend  </span>  Spring Boot, Node.js, REST APIs, microservices`);
-    line(`<span class="out-cmd">genai    </span>  RAG pipelines, LLM integration (GPT-4o), MCP servers, multi-agent orchestration`);
-    line(`<span class="out-cmd">platform </span>  AWS, Docker, CI/CD (build-time optimization), GitHub Actions, Semgrep`);
+    [
+      ["Languages", "Java (8/17/21) · Python · TypeScript · JavaScript · SQL · PL/SQL"],
+      ["Backend", "Spring Boot 3 · Spring Security/Data JPA/Integration · Hibernate · Node.js · Kafka · REST"],
+      ["Frontend", "React · Redux · React Query · TypeScript · Streamlit"],
+      ["Data", "PostgreSQL · MySQL · Oracle · MongoDB · CockroachDB · Redis"],
+      ["Cloud & DevOps", "AWS (EC2/S3/Lambda/EKS/IAM) · Cloud Foundry · Docker · Kubernetes · Terraform · Jenkins · GitHub Actions"],
+      ["AI & GenAI", "Claude API · MCP Servers · RAG · Prompt Engineering · GitHub Copilot customization (agents/skills/hooks)"],
+      ["Quality & Observ", "JUnit 5 · Mockito · Jest · Karate · SonarQube · JaCoCo · Splunk · Prometheus · Grafana · Dynatrace"],
+    ].forEach(([g, items]) => line(`  <span class="out-green">${escapeHtml(g.padEnd(17))}</span><span class="out-white">${escapeHtml(items)}</span>`));
+  },
+  impact() {
+    line(`<span class="out-white">proof over promises:</span>`);
+    [
+      ["$5M+", "projected annual savings — BNetAuto branch automation platform"],
+      ["4h → <5min", "per-branch network setup time (validated in test)"],
+      ["1 → 50-60", "branches migrated per rollout night (parallel auto-merge batch engine)"],
+      ["45 → <20min", "full CI/CD build-and-test cycle (parallelized JUnit/Jest/Karate, Docker layer caching)"],
+      ["95%", "new-code coverage gate across 3,400+ automated tests (JUnit 5, Jest, Karate)"],
+      ["2d → <30min", "underwriting submission triage (Great American Insurance)"],
+    ].forEach(([n, d]) => line(`  <span class="out-green">${escapeHtml(n.padEnd(12))}</span><span class="out-dim">${escapeHtml(d)}</span>`));
+  },
+  ai() {
+    [
+      ["BMAD", "built an agentic AI development framework from scratch: 6 specialized agent personas,\n  36+ workflow skills, 3-tier TOML override system. Onboarded the entire team onto it."],
+      ["4 MCP servers deployed", "Jira, Confluence, read-only PostgreSQL, internal vendor API — so agents\n  query live project state without leaving the IDE."],
+      ["AI-driven Bitbucket PR-review workflow", "wiring Jira + Jenkins + SonarQube."],
+      ["Zero-dependency Confluence CLI", "letting agents read/write 40+ project pages."],
+      ["Customized GitHub Copilot", "specialized agents, instruction sets, skills, hooks, plugins."],
+      ["Anthropic-certified", "Claude API, Model Context Protocol, AI Fluency."],
+    ].forEach(([t, d]) => line(`<span class="out-green">${escapeHtml(t)}</span> <span class="out-white">${escapeHtml("— " + d)}</span>`));
+  },
+  certs() {
+    [
+      ["Anthropic", "Claude 101 · AI Fluency · Building with the Claude API · MCP: Advanced Topics · Claude with Amazon Bedrock"],
+      ["AWS", "Certified Developer – Associate"],
+      ["Microsoft", "Azure Developer Associate (AZ-204)"],
+      ["JetBrains", "Java Professional"],
+      ["Salesforce", "Certified AI Associate"],
+    ].forEach(([o, c]) => line(`  <span class="out-green">${escapeHtml(o.padEnd(11))}</span><span class="out-white">${escapeHtml(c)}</span>`));
+  },
+  education() {
+    line(`<span class="out-white">MS Information Technology</span> <span class="out-dim">— University of Cincinnati, USA (Aug 2023 – Dec 2024) · GPA 4.0</span>`);
   },
   projects() {
     [
@@ -383,12 +268,13 @@ const COMMANDS = {
     });
   },
   contact() {
-    line(`<span class="out-white">linkedin </span>  <a href="https://linkedin.com/in/jashwanthnagveepuri" target="_blank" rel="noopener">linkedin.com/in/jashwanthnagveepuri</a>`);
+    line(`<span class="out-white">email    </span>  <a href="mailto:jashwanthnagft@gmail.com">jashwanthnagft@gmail.com</a>`);
+    line(`<span class="out-white">linkedin </span>  <a href="https://linkedin.com/in/jashwanthnag3037" target="_blank" rel="noopener">linkedin.com/in/jashwanthnag3037</a>`);
     line(`<span class="out-white">github   </span>  <a href="https://github.com/jashwanthnagveepuri" target="_blank" rel="noopener">github.com/jashwanthnagveepuri</a>`);
   },
   linkedin() {
-    line(`<a href="https://linkedin.com/in/jashwanthnagveepuri" target="_blank" rel="noopener">https://linkedin.com/in/jashwanthnagveepuri</a>`);
-    window.open("https://linkedin.com/in/jashwanthnagveepuri", "_blank");
+    line(`<a href="https://linkedin.com/in/jashwanthnag3037" target="_blank" rel="noopener">https://linkedin.com/in/jashwanthnag3037</a>`);
+    window.open("https://linkedin.com/in/jashwanthnag3037", "_blank");
   },
   github() {
     line(`<a href="https://github.com/jashwanthnagveepuri" target="_blank" rel="noopener">https://github.com/jashwanthnagveepuri</a>`);
@@ -406,23 +292,6 @@ const COMMANDS = {
     div.appendChild(img);
     term.appendChild(div);
     term.scrollTop = term.scrollHeight;
-  },
-  streak() {
-    if (!DATA) { line(`<span class="out-dim">loading contribution data...</span>`); return; }
-    line(`<span class="out-green">current streak:</span>  ${DATA.current_streak.length} days (${DATA.current_streak.start} → ${DATA.current_streak.end})`);
-    line(`<span class="out-green">longest streak:</span>  ${DATA.longest_streak.length} days (${DATA.longest_streak.start} → ${DATA.longest_streak.end})`);
-    line(`<span class="out-green">best day:</span>       ${DATA.best_day.count} contributions on ${DATA.best_day.date}`);
-    line(`<span class="out-green">total:</span>          ${DATA.total_contributions.toLocaleString()} contributions since ${DATA.range.start}`);
-  },
-  contributions() {
-    if (!DATA) { line(`<span class="out-dim">loading contribution data...</span>`); return; }
-    line(`<span class="out-dim">${DATA.total_contributions.toLocaleString()} contributions · ${DATA.range.start} → ${DATA.range.end}</span>`);
-    const div = document.createElement("div");
-    div.className = "line";
-    div.appendChild(buildHeatmapEl());
-    term.appendChild(div);
-    term.scrollTop = term.scrollHeight;
-    line(`<span class="out-dim">hover a cell for the exact date and count</span>`);
   },
   matrix() {
     toggleMatrix();
@@ -459,7 +328,7 @@ function runCommand(raw) {
   if (key === "open") {
     const target = (args[0] || "").toLowerCase();
     const map = {
-      linkedin: "https://linkedin.com/in/jashwanthnagveepuri",
+      linkedin: "https://linkedin.com/in/jashwanthnag3037",
       github: "https://github.com/jashwanthnagveepuri",
     };
     if (map[target]) { line(`<span class="out-dim">opening ${target}...</span>`); window.open(map[target], "_blank"); }
@@ -468,10 +337,6 @@ function runCommand(raw) {
   }
   if (COMMANDS[key]) { COMMANDS[key](args); }
   else line(`<span class="out-dim">command not found: ${escapeHtml(cmd)} — type 'help'</span>`);
-}
-
-function escapeHtml(s) {
-  return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
 input.addEventListener("keydown", (e) => {
@@ -517,6 +382,13 @@ function startMatrix() {
 }
 
 /* ---------------------------------------------------------------------- */
+const IMPACT_CARDS = [
+  ["$5M+", "Projected Annual Savings"],
+  ["<5 MIN", "Branch Setup (was 4+ hrs)"],
+  ["50-60", "Branches per Rollout Night (was 1)"],
+  ["<20 MIN", "CI/CD Cycle (was 45 min)"],
+];
+
 function boot() {
   line(`<span class="out-green">connected to github.com/jashwanthnagveepuri</span>`);
   line(`<span class="out-dim">type 'help' to see available commands</span>`);
@@ -524,7 +396,9 @@ function boot() {
 
   const statsWrap = document.createElement("div");
   statsWrap.className = "line";
-  statsWrap.innerHTML = `<div class="stats" id="statsBox"></div>`;
+  statsWrap.innerHTML = `<div class="stats" id="statsBox">` + IMPACT_CARDS.map(([num, lbl]) =>
+    `<div class="stat"><div class="num">${escapeHtml(num)}</div><div class="lbl">${escapeHtml(lbl)}</div></div>`
+  ).join("") + `</div>`;
   term.appendChild(statsWrap);
 
   blank();
@@ -532,7 +406,6 @@ function boot() {
   input.focus();
 }
 
-loadData();
 boot();
 </script>
 </body>
