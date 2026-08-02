@@ -158,12 +158,11 @@ const COMMANDS = {
     ].forEach(([c, d]) => line(`  <span class="out-cmd">${c.padEnd(15)}</span><span class="out-dim">${d}</span>`));
   },
   whoami() {
-    line(`<span class="out-white">${escapeHtml('Jashwanth Nag Veepuri ("Nag") — Software Engineer, 5 years of experience')}</span>`);
+    line(`<span class="out-white">${escapeHtml("Backend & platform engineer, 5 YOE · MS IT, Univ. of Cincinnati (4.0 GPA) · Columbus, OH")}</span>`);
     [
-      "MS Information Technology, University of Cincinnati (GPA 4.0)",
-      "Backend & platform engineer: Java 21 / Spring Boot 3, event-driven systems, AWS",
-      "Currently @ JPMorgan Chase — automation platform modernizing 5,000+ retail bank branches",
-      "Side quest: I lead my team's AI-assisted engineering practice (agentic frameworks + MCP servers)",
+      "Currently: Software Engineer @ JPMorgan Chase (Java 21 / Spring Boot 3 / AWS)",
+      "Past: SDE II @ Great American Insurance · SWE @ Accenture (Healthcare)",
+      "Cut branch setup 4h→<5min · $5M+ projected savings · Built my team's agentic AI framework (BMAD + 4 MCP servers)",
     ].forEach((t) => line(`<span class="out-dim">${escapeHtml(t)}</span>`));
   },
   experience() {
